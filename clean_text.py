@@ -7,17 +7,18 @@ Created on Wed Nov 14 12:20:02 2018
 
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
-from nltk.corpus import stopwords
-
 
 # Init Objects
 tokenizer = RegexpTokenizer(r'\w+')
 en_stopwords = set(stopwords.words('english'))
+#print(len(en_stopwords))
+en_stopwords.difference_update({'very','again','not',"doesn't","don't","isn't"})
+#print(len(en_stopwords))
 ps = PorterStemmer()
 
 
 def getCleanReview(review):
-    
+    review = str(review) # if review is numpy array
     review = review.lower()
     review = review.replace("<br /><br />"," ")
     
